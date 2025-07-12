@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Beginner Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+
+  body { background: #f2f2f2; }
+
+  header {
+    background: #333; color: #fff; padding: 15px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  nav a { color: #fff; margin-left: 15px; text-decoration: none; }
+
+  .container {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 20px; padding: 20px;
+  }
+
+  .box {
+    background: #fff; padding: 20px;
+    border-radius: 10px; box-shadow: 0 0 10px #ccc;
+  }
+
+  input, textarea, button {
+    width: 100%; margin: 10px 0;
+    padding: 10px; border-radius: 5px; border: 1px solid #ccc;
+  }
+
+  button {
+    background: green; color: #fff; border: none; cursor: pointer;
+  }
+
+  button:hover { background: darkgreen; }
+
+  #taskInput { width: 70%; display: inline-block; }
+
+  #addBtn {
+    width: 28%; background: blue; color: #fff;
+    border: none; padding: 10px;
+  }
+
+  ul { list-style: none; padding-left: 0; }
+
+  li {
+    background: #eee; margin: 5px 0; padding: 10px;
+    border-radius: 5px; cursor: pointer;
+  }
+
+  @media (max-width: 700px) {
+    .container { grid-template-columns: 1fr; }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <header>
+    <h1>My Beginner Project</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+
+    <div class="box">
+      <h2>Contact Us</h2>
+
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <div class="box">
+      <h2>To-Do List</h2>
+
+      <input type="text" id="taskInput" placeholder="Enter a task">
+      <button id="addBtn" onclick="addTask()">Add</button>
+
+      <ul id="taskList">
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var message = document.getElementById("message").value.trim();
+
+      if (name === "" || email === "" || message === "") {
+        alert("Please fill in all fields.");
+        event.preventDefault(); 
+      } else if (!email.includes("@")) {
+        alert("Please enter a valid email address.");
+        event.preventDefault();
+      } else {
+        alert("Thank you for contacting us!");
+      }
+    });
+
+    function addTask() {
+      var taskInput = document.getElementById("taskInput");
+      var taskText = taskInput.value.trim();
+
+      if (taskText === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      var li = document.createElement("li");
+      li.textContent = taskText;
+
+      li.onclick = function() {
+        this.remove();
+      }
+
+      var taskList = document.getElementById("taskList");
+      taskList.appendChild(li);
+
+      taskInput.value = "";
+    }
+  </script>
+
+</body>
+</html>
