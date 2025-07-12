@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Responsive Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #4a148c;
+    }
+
+    h2 {
+      color: #00695c;
+    }
+
+    #quiz-box, #joke-box {
+      margin-top: 25px;
+      padding: 20px;
+      border: 1px solid #b2dfdb;
+      border-radius: 10px;
+      background-color: #f1f8e9;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00897b;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00695c;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+<center>
+  <div class="container">
+    <h1>Welcome to My Webpage</h1>
+
+    <div id="quiz-box">
+      <h2>Quick Quiz</h2>
+      <p id="question">Loading question...</p>
+      <div id="choices"></div>
+      <p id="result"></p>
+    </div>
+
+    <div id="joke-box">
+      <h2>Need a Laugh?</h2>
+      <button id="jokeBtn">Get Joke</button>
+      <p id="jokeText"></p>
+    </div>
+  </div>
+
+  <script>
+    var questions = [
+      { q: "What is 2 + 2?", c: ["3", "4", "5"], a: "4" },
+      { q: "Which planet is closest to the sun?", c: ["Earth", "Mercury", "Mars"], a: "Mercury" }
+    ];
+    var index = 0;
+    var questionEl = document.getElementById("question");
+    var choicesEl = document.getElementById("choices");
+    var resultEl = document.getElementById("result");
+
+    function loadQuestion() {
+      var q = questions[index];
+      questionEl.textContent = q.q;
+      choicesEl.innerHTML = "";
+      q.c.forEach(function(choice) {
+        var btn = document.createElement("button");
+        btn.textContent = choice;
+        btn.onclick = function() {
+          if (choice === q.a) {
+            resultEl.textContent = "Correct!";
+            resultEl.style.color = "green";
+          } else {
+            resultEl.textContent = "Wrong!";
+            resultEl.style.color = "red";
+          }
+          index++;
+          if (index < questions.length) {
+            setTimeout(function() {
+              resultEl.textContent = "";
+              loadQuestion();
+            }, 1000);
+          } else {
+            questionEl.textContent = "Quiz done!";
+            choicesEl.innerHTML = "";
+          }
+        };
+        choicesEl.appendChild(btn);
+      });
+    }
+
+    loadQuestion();
+
+    var jokeBtn = document.getElementById("jokeBtn");
+    var jokeText = document.getElementById("jokeText");
+
+    jokeBtn.addEventListener("click", function() {
+      fetch("https://icanhazdadjoke.com/", {
+        headers: {
+          Accept: "application/json"
+        }
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        jokeText.textContent = data.joke;
+      })
+      .catch(function(err) {
+        jokeText.textContent = "Couldn't load a joke :(";
+      });
+    });
+  </script>
+</center>
+</body>
+</html>
