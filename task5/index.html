@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Raghul | Developer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Raghul</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content container">
+      <h2>Hi, I'm Raghul</h2>
+      <p>Full-stack Developer crafting beautiful web experiences.</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="container">
+    <h2>About Me</h2>
+    <div class="about-grid">
+      <img src="images/profile.jpg" loading="lazy" alt="Raghul" />
+      <div>
+        <p>
+          I'm a passionate developer specializing in building responsive, dynamic web applications. 
+          I enjoy turning ideas into reality through clean code and engaging design.
+        </p>
+        <p>
+          Technologies I work with: HTML, CSS, JavaScript, React, Node.js.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="card">
+        <h3>Music App</h3>
+        <p>Fully responsive Music App in PHP with MongoDB .</p>
+      </div>
+      <div class="card">
+        <h3>E-Commerce Platform</h3>
+        <p>Online shop with cart, Stripe payments, and admin dashboard.</p>
+      </div>
+      <div class="card">
+        <h3>Portfolio Builder</h3>
+        <p>Dynamic portfolio generator with customizable themes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Raghul. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
